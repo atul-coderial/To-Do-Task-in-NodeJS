@@ -9,6 +9,8 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+//Accessing the assets in the middleware with ejs
+app.use(express.static('assets'));
 //Responsing the home page to the browser
 app.get('/', function(req, res){
     return res.render('home', {
