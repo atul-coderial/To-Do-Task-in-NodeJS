@@ -1,0 +1,31 @@
+{
+  "name": "assignment_nodejs",
+  "version": "1.0.0",
+  "description": "Assignment in nodejs to create To-Do Task",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atul-coderial/To-Do-Task-in-NodeJS.git"
+  },
+  "keywords": [
+    "todo",
+    "tasks",
+    "mongodb",
+    "express",
+    "nodejs"
+  ],
+  "author": "atul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atul-coderial/To-Do-Task-in-NodeJS/issues"
+  },
+  "homepage": "https://github.com/atul-coderial/To-Do-Task-in-NodeJS#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}
