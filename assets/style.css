@@ -5,11 +5,11 @@ body{
 }
 
 .todo{
-    border: 2px solid black;
     height: 675px;
     width: 600px;
     margin-left: 30%;
     background-color: whitesmoke;
+    margin-top: -19px;
 }
 
 div{

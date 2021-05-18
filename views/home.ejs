@@ -24,14 +24,19 @@
                     <div class="row form-group">
                         <div class="border0 inlineblock mgl">
                             <label for = "category">CATEGORY</label><br>
-                            <select id = "category">
+                            <select id = "category" name = "category">
                                 <option>Choose a category</option>
-                                <option value="first">First</option>
+                                <option value="School">School</option>
+                                <option value="Work">Work</option>
+                                <option value="College">College</option>
+                                <option value="tomorrow">Tomorrow</option>
+                                <option value="office">Office</option>
+
                             </select>
                         </div>
                         <div class="border0 inlineblock">
-                            <label for = "due-date">DUE DATE</label><br>
-                            <input type="date" id = "due-date" name = "due-date" class="gc" placeholder="dd/mm/yyyy">
+                            <label for = "duedate">DUE DATE</label><br>
+                            <input type="date" id = "duedate" name = "duedate" class="gc" placeholder="dd/mm/yyyy">
                         </div>
                     </div>
                 </div>
@@ -43,7 +48,7 @@
                         </button>
                     </span>
                     <span>
-                        <button class="btn2">
+                        <button type="button" id="deletetasks" class="btn2">
                             <i class="fa fa-trash-o"></i>&nbsp;&nbsp;
                             DELETE TASKS
                         </button>
@@ -52,11 +57,12 @@
             </form>
             <div class="container-fluid checkmlr checkmlrb">
                 <table>
+                    <tbody>
                     <tr>
                         <td rowspan="2">
-                            <input class="form-check-input checkbox-lg" type="checkbox" value="description" id="description" >
+                            <input class="form-check-input checkbox-lg" type="checkbox" value="" id="chk" name="chk" >
                         </td>
-                        <td><label class="form-check-label" for="description">
+                        <td><label class="form-check-label" for="chk">
                             Why not add a task?
                           </label></td>
                           <td rowspan="2">
@@ -74,9 +80,9 @@
                     </tr>
                     <tr>
                         <td rowspan="2">
-                            <input class="form-check-input checkbox-lg" type="checkbox" value="description" id="description" >
+                            <input class="form-check-input checkbox-lg" type="checkbox" value="" id="chk" name="chk">
                         </td>
-                        <td><label class="form-check-label" for="description">
+                        <td><label class="form-check-label" for="chk">
                             Let's make a TODO App
                           </label></td>
                           <td rowspan="2">
@@ -94,9 +100,9 @@
                     </tr>
                     <tr>
                         <td rowspan="2">
-                            <input class="form-check-input checkbox-lg" type="checkbox" value="description" id="description" >
+                            <input class="form-check-input checkbox-lg" type="checkbox" value="" id="chk" name="chk">
                         </td>
-                        <td><label class="form-check-label" for="description">
+                        <td><label class="form-check-label" for="chk">
                             Annual report submission deadline
                           </label></td>
                           <td rowspan="2">
@@ -112,15 +118,16 @@
                             </span>
                         </td>
                     </tr>
+                    <% for(let i of todo_task){ %>
                     <tr>
                         <td rowspan="2">
-                            <input class="form-check-input checkbox-lg" type="checkbox" value="description" id="description" >
+                            <input class="form-check-input checkbox-lg" type="checkbox" value="<%= i._id %>" id="chk" name="chk" >
                         </td>
-                        <td><label class="form-check-label" for="description">
-                            Annual report submission deadline
+                        <td><label class="form-check-label" for="chk">
+                            <%= i.description %>
                           </label></td>
                           <td rowspan="2">
-                              <p class="btn3 C2">WORK</p>
+                              <p class="btn3 C2"><%= i.category %></p>
                           </td>
                     </tr>
                     <tr>
@@ -128,13 +135,29 @@
                             <span>
                                 <p>
                                 <i class="fa fa-calendar"></i>&nbsp;
-                                Jun 1, 2019</p>
+                                <%= i.duedate %></p>
                             </span>
                         </td>
                     </tr>
-                    
+                    <% } %>
+                </tbody>
                 </table>
             </div>
         </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     </body>
 </html>
+<script>
+    $('#deletetasks').on('click', function(){
+        var item = $("input:checked").$(this).value;
+        $.ajax({
+            type: 'DELETE',
+            url: '/delete_tasks',
+            method: 'GET',
+            success: function(data){
+                console.log('Successfully Jquery')
+            }
+        })
+    })
+</script>
